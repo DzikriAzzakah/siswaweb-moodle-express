@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "ed3d4f9b-32f8-4005-9b31-385d26f0187a",
+		"name": "SISWAWEB-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24049812"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Update By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin_super\",\r\n    \"password\":\"Superadmin@123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/user/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4",
+									"uuid": "efd81a64-7d67-4ffe-8502-ffd0fa957685"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Detail By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin_super\",\r\n    \"password\":\"Superadmin@123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teacher",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/teacher",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Subjects By Teacher Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/teacher/subjects?teacherEmail=user@example.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"teacher",
+								"subjects"
+							],
+							"query": [
+								{
+									"key": "teacherEmail",
+									"value": "user@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Assignments By Teacher Email And/Or Subject ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/teacher/assignments?teacherEmail=alexandro.putra@gmail.com&subjectId=2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"teacher",
+								"assignments"
+							],
+							"query": [
+								{
+									"key": "teacherEmail",
+									"value": "alexandro.putra@gmail.com"
+								},
+								{
+									"key": "subjectId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "Get All Student By Parent Number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/student?parentNumber=628119127010",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student"
+							],
+							"query": [
+								{
+									"key": "parentNumber",
+									"value": "628119127010"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Scores Students By Parent Number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/student/scores?parentNumber=628119127011&assignmentId=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"scores"
+							],
+							"query": [
+								{
+									"key": "parentNumber",
+									"value": "628119127011"
+								},
+								{
+									"key": "assignmentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/health",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:8083/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDgzOTk1MCwiZXhwIjoxNzE0ODY4NzUwfQ.qFhx_cOhlJWUUHjC0ho_jzPDCP7WKHL1zKDpsLLfrv4",
+			"type": "string"
+		}
+	]
+}

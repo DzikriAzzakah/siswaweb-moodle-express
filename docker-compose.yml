@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: 'mariadb:latest'
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - 'mariadb_data:/var/lib/mysql'
+      - './script/init.sql:/docker-entrypoint-initdb.d/init.sql'
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "healthcheck.sh",
+          "--su-mysql",
+          "--connect",
+          "--innodb_initialized"
+        ]
+      interval: 10s
+      timeout: 5s 
+      retries: 5   
+
+  moodle:
+    image: 'bitnami/moodle:latest'
+    environment:
+      MARIADB_HOST: ${MARIADB_HOST}
+      MARIADB_PORT_NUMBER: ${MARIADB_PORT_NUMBER}
+      MOODLE_DATABASE_USER: ${MOODLE_DATABASE_USER}
+      MOODLE_DATABASE_NAME: ${MOODLE_DATABASE_NAME}
+      MOODLE_DATABASE_PASSWORD: ${MOODLE_DATABASE_PASSWORD}
+      MOODLE_SITE_NAME: ${MOODLE_SITE_NAME}
+      MOODLE_USERNAME: ${MOODLE_USERNAME}
+      MOODLE_PASSWORD: ${MOODLE_PASSWORD}
+    ports:
+      - '8082:8080'
+      - '443:8443'
+    volumes:
+      - 'moodle_data:/bitnami'
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  # Node.js Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node_app
+    restart: always
+    environment:
+      APP_PORT: ${APP_PORT}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRE: ${JWT_EXPIRE}
+      DB_MDL_HOST: ${DB_MDL_HOST}
+      DB_MDL_USER: ${DB_MDL_USER}
+      DB_MDL_PASSWORD: ${DB_MDL_PASSWORD}
+      DB_MDL_NAME: ${DB_MDL_NAME}
+    ports:
+      - "8083:8000"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      moodle:
+        condition: service_started
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  mariadb_data:
+  moodle_data:

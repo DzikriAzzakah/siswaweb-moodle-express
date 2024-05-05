@@ -3,8 +3,11 @@ const { CompareHashPassword } = require("../utils/crypt");
 const { GenerateJWT } = require("../utils/jwt");
 
 const Login = async (request) => {
+  let db = null;
   try {
-    const db = getDb();
+    const pool = getDb();
+    db = await pool.getConnection();
+
     const sqlCheckUserByUsername = `
       SELECT id,username,password FROM users WHERE username = ?
     `;
@@ -34,6 +37,8 @@ const Login = async (request) => {
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 

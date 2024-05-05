@@ -2,6 +2,7 @@ const { getDb } = require("../utils/db");
 const { HashPassword } = require("../utils/crypt");
 
 const CreateUser = async (user) => {
+  let db = null;
   try {
     const sql = `
       INSERT INTO users (username,password) VALUES (?,?)
@@ -10,7 +11,8 @@ const CreateUser = async (user) => {
 
     const values = [user.username, hashPassword];
 
-    const db = getDb();
+    const pool = getDb();
+    db = await pool.getConnection();
 
     const [result] = await db.execute(sql, values);
 
@@ -18,10 +20,13 @@ const CreateUser = async (user) => {
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
 const GetAllUser = async () => {
+  let db = null;
   try {
     const sql = `
       SELECT 
@@ -36,17 +41,22 @@ const GetAllUser = async () => {
         deleted_at is NULL
     `;
 
-    const db = getDb();
+    const pool = getDb();
+    db = await pool.getConnection();
+
     const [rows] = await db.execute(sql);
 
     return rows;
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
 const GetDetailUserById = async (id) => {
+  let db = null;
   try {
     const sql = `
       SELECT 
@@ -64,7 +74,9 @@ const GetDetailUserById = async (id) => {
     `;
     const values = [id];
 
-    const db = getDb();
+    const pool = getDb();
+    db = await pool.getConnection();
+
     const [rows] = await db.execute(sql, values);
 
     if (rows.length < 1) {
@@ -75,10 +87,13 @@ const GetDetailUserById = async (id) => {
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
 const UpdateUserById = async (id, user) => {
+  let db = null;
   try {
     const sqlCheckUserById = `
       SELECT 
@@ -96,7 +111,9 @@ const UpdateUserById = async (id, user) => {
     `;
     const valueCheckUserById = [id];
 
-    const db = getDb();
+    const pool = getDb();
+    db = await pool.getConnection();
+
     const [rows] = await db.execute(sqlCheckUserById, valueCheckUserById);
 
     if (rows.length < 1) {
@@ -117,10 +134,13 @@ const UpdateUserById = async (id, user) => {
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
 const DeleteUserById = async (id) => {
+  let db = null;
   try {
     const sqlCheckUserById = `
       SELECT 
@@ -138,7 +158,9 @@ const DeleteUserById = async (id) => {
     `;
     const valueCheckUserById = [id];
 
-    const db = getDb();
+    const pool = getDb();
+    db = await pool.getConnection();
+
     const [rows] = await db.execute(sqlCheckUserById, valueCheckUserById);
 
     if (rows.length < 1) {
@@ -157,6 +179,8 @@ const DeleteUserById = async (id) => {
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 

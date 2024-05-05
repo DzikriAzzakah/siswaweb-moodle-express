@@ -5,6 +5,7 @@ const {
 } = require("../utils/general");
 
 const GetAllTeacher = async () => {
+  let db = null;
   try {
     const sql = `
       SELECT DISTINCT 
@@ -32,17 +33,21 @@ const GetAllTeacher = async () => {
     `;
     const values = [3];
 
-    const moodleDB = getMoodleDb();
-    const [rows] = await moodleDB.execute(sql, values);
+    const pool = getMoodleDb();
+    db = await pool.getConnection();
+    const [rows] = await db.execute(sql, values);
 
     return rows;
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
 const GetAllSubjectsByTeacherEmail = async (teacherEmail) => {
+  let db = null;
   try {
     const sql = `
       SELECT
@@ -70,17 +75,21 @@ const GetAllSubjectsByTeacherEmail = async (teacherEmail) => {
     `;
     const values = [teacherEmail];
 
-    const moodleDB = getMoodleDb();
-    const [rows] = await moodleDB.execute(sql, values);
+    const pool = getMoodleDb();
+    db = await pool.getConnection();
+    const [rows] = await db.execute(sql, values);
 
     return rows;
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
 const GetAllAssignmentsByTeacherEmail = async (teacherEmail) => {
+  let db = null;
   try {
     const sql = `
         SELECT DISTINCT
@@ -122,7 +131,8 @@ const GetAllAssignmentsByTeacherEmail = async (teacherEmail) => {
     `;
     const values = [3, teacherEmail];
 
-    const moodleDB = getMoodleDb();
+    const pool = getMoodleDb();
+    db = await pool.getConnection();
     const [rows] = await moodleDB.execute(sql, values);
 
     rows.forEach((e) => {
@@ -135,6 +145,8 @@ const GetAllAssignmentsByTeacherEmail = async (teacherEmail) => {
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
@@ -142,6 +154,7 @@ const GetAllAssignmentsByTeacherEmailAndSubjectId = async (
   teacherEmail,
   subjectId
 ) => {
+  let db = null;
   try {
     const sql = `
         SELECT DISTINCT
@@ -184,8 +197,10 @@ const GetAllAssignmentsByTeacherEmailAndSubjectId = async (
     `;
     const values = [3, teacherEmail, subjectId];
 
-    const moodleDB = getMoodleDb();
-    const [rows] = await moodleDB.execute(sql, values);
+    const pool = getMoodleDb();
+    db = await pool.getConnection();
+
+    const [rows] = await db.execute(sql, values);
 
     rows.forEach((e) => {
       e.due_date = TransformUnixTimestampToISOString(e.due_date);
@@ -195,6 +210,8 @@ const GetAllAssignmentsByTeacherEmailAndSubjectId = async (
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 

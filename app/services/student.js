@@ -2,6 +2,7 @@ const { getMoodleDb } = require("../utils/moodle_db");
 const { TransformUnixTimestampToISOString } = require("../utils/general");
 
 const GetAllStudentsByParentNumber = async (parentNumber) => {
+  let db = null;
   try {
     const sql = `
         SELECT 
@@ -38,8 +39,10 @@ const GetAllStudentsByParentNumber = async (parentNumber) => {
     `;
     const values = [5, parentNumber];
 
-    const moodleDB = getMoodleDb();
-    const [rows] = await moodleDB.execute(sql, values);
+    const pool = getMoodleDb();
+    db = await pool.getConnection();
+
+    const [rows] = await db.execute(sql, values);
 
     rows.forEach((e) => {
       e.timecreated = TransformUnixTimestampToISOString(e.timecreated);
@@ -50,6 +53,8 @@ const GetAllStudentsByParentNumber = async (parentNumber) => {
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 
@@ -57,6 +62,8 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
   parentNumber,
   assignmentId
 ) => {
+  let db = null;
+
   try {
     const sql = `
        SELECT DISTINCT
@@ -106,8 +113,10 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
     `;
     const values = [5, parentNumber, assignmentId];
 
-    const moodleDB = getMoodleDb();
-    const [rows] = await moodleDB.execute(sql, values);
+    const pool = getMoodleDb();
+    db = await pool.getConnection();
+
+    const [rows] = await db.execute(sql, values);
 
     rows.forEach((e) => {
       e.grade = parseInt(e.grade);
@@ -117,6 +126,8 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
   } catch (error) {
     console.error(error);
     throw error;
+  } finally {
+    db.release();
   }
 };
 

@@ -71,6 +71,8 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
           mu.firstname AS first_name,
           mu.lastname AS last_name,
           ma.name AS assignment_name,
+          mc.fullname AS subject_name,
+          ma.duedate AS assignment_date,
           mag.grade 
         FROM 
           mdl_role_assignments mra 
@@ -120,6 +122,7 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
 
     rows.forEach((e) => {
       e.grade = parseInt(e.grade);
+      e.assignment_date = TransformUnixTimestampToISOString(e.assignment_date);
     });
 
     return rows;

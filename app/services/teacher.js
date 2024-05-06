@@ -133,7 +133,7 @@ const GetAllAssignmentsByTeacherEmail = async (teacherEmail) => {
 
     const pool = getMoodleDb();
     db = await pool.getConnection();
-    const [rows] = await moodleDB.execute(sql, values);
+    const [rows] = await db.execute(sql, values);
 
     rows.forEach((e) => {
       e.due_date = TransformUnixTimestampToISOString(e.due_date);

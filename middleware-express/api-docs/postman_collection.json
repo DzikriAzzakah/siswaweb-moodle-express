@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "abc72635-5123-4c70-902d-54254b939963",
+		"name": "SISWAWEB-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32082746"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"taufik45\",\r\n    \"password\":\"Reverseit@40252\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"taufik454\",\r\n    \"password\":\"Reverseit@4025\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/user/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"password_admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/auth/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teacher",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIifSwiaWF0IjoxNzE1NDM5NjgzLCJleHAiOjE3MTU0Njg0ODN9.D9lORK7tUNKTUzxfcqaVnSch8lq82sv3cEwsbRsScd0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/teacher?roleIds=5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"teacher"
+							],
+							"query": [
+								{
+									"key": "roleIds",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Subjects By Teacher Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIifSwiaWF0IjoxNzE1NDM5NjgzLCJleHAiOjE3MTU0Njg0ODN9.D9lORK7tUNKTUzxfcqaVnSch8lq82sv3cEwsbRsScd0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/teacher/subjects"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Assignments By Teacher Or Subject ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIifSwiaWF0IjoxNzE1NDM5NjgzLCJleHAiOjE3MTU0Njg0ODN9.D9lORK7tUNKTUzxfcqaVnSch8lq82sv3cEwsbRsScd0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/teacher/assignments"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "Get All Student By Parent Number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/student?parentNumber=628119127010",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student"
+							],
+							"query": [
+								{
+									"key": "parentNumber",
+									"value": "628119127010"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Scores Students By Parent Number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/student/scores?parentNumber=085314329936&assignmentId=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"student",
+								"scores"
+							],
+							"query": [
+								{
+									"key": "parentNumber",
+									"value": "085314329936"
+								},
+								{
+									"key": "assignmentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}/health"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		}
+	]
+}

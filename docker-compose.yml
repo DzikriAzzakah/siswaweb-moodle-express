@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - 'mariadb_data:/var/lib/mysql'
-      - './script/init.sql:/docker-entrypoint-initdb.d/init.sql'
+      - './middleware-express/script/init.sql:/docker-entrypoint-initdb.d/init.sql'
     healthcheck:
       test:
         [
@@ -24,7 +24,7 @@ services:
         ]
       interval: 10s
       timeout: 5s 
-      retries: 5   
+      retries: 5
 
   moodle:
     image: 'bitnami/moodle:latest'
@@ -47,10 +47,10 @@ services:
         condition: service_healthy
 
   # Node.js Service
-  app:
+  node_app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./middleware-express/Dockerfile
     container_name: node_app
     restart: always
     environment:
@@ -65,6 +65,7 @@ services:
       DB_MDL_USER: ${DB_MDL_USER}
       DB_MDL_PASSWORD: ${DB_MDL_PASSWORD}
       DB_MDL_NAME: ${DB_MDL_NAME}
+      AUTHENTICATE_URL: ${AUTHENTICATE_URL}
     ports:
       - "8083:8000"
     depends_on:
@@ -72,9 +73,30 @@ services:
         condition: service_healthy
       moodle:
         condition: service_started
+      php_app:
+        condition: service_started
     volumes:
-      - .:/app
+      - ./middleware-express:/app
       - /app/node_modules
+
+  # PHP Service
+  php_app:
+    build:
+      context: .
+      dockerfile: ./authenticate-laravel/Dockerfile
+    container_name: php_app
+    restart: always
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: ${DB_HOST}
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_MDL_NAME}
+      DB_USERNAME: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
 
 volumes:
   mariadb_data:

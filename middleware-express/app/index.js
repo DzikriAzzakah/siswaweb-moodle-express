@@ -9,6 +9,7 @@ const {
   AuthRoute,
   TeacherRoute,
   StudentRoute,
+  RoleRoute,
 } = require("./routes/index");
 const NotFoundMiddleware = require("./middlewares/not_found");
 const GlobalErrorMiddleware = require("./middlewares/global_error");
@@ -40,6 +41,7 @@ app.use("/api/v1/user", UserRoute);
 app.use("/api/v1/auth", AuthRoute);
 app.use("/api/v1/teacher", TeacherRoute);
 app.use("/api/v1/student", StudentRoute);
+app.use("/api/v1/role", RoleRoute);
 
 // Register Global Route
 app.use(NotFoundMiddleware);

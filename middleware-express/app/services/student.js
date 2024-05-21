@@ -66,14 +66,14 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
 
   try {
     const sql = `
-       SELECT DISTINCT
+        SELECT DISTINCT
           mu.id,
           mu.firstname AS first_name,
           mu.lastname AS last_name,
           ma.name AS assignment_name,
           mc.fullname AS subject_name,
           ma.duedate AS assignment_date,
-          mag.grade 
+          mgg.finalgrade AS grade
         FROM 
           mdl_role_assignments mra 
         JOIN
@@ -101,11 +101,15 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
         ON
           mc.id = me.courseid 
         JOIN
-          mdl_assign_grades mag
+          mdl_grade_items mgi
         ON
-          mag.userid = mu.id 
-        AND 
-          mag.assignment = ma.id
+          mgi.itemname = ma.name
+        JOIN
+          mdl_grade_grades mgg
+        ON
+          mgg.userid = mu.id
+        AND
+          mgg.itemid = mgi.id
         WHERE 
           mra.roleid = ?
         AND
@@ -121,7 +125,7 @@ const GetScoreStudentsByParentNumberAndAssignmentId = async (
     const [rows] = await db.execute(sql, values);
 
     rows.forEach((e) => {
-      e.grade = parseInt(e.grade);
+      e.grade = parseFloat(e.grade);
       e.assignment_date = TransformUnixTimestampToISOString(e.assignment_date);
     });
 

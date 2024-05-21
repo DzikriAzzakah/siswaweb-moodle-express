@@ -5,6 +5,7 @@ const authenticateAPI = require("../requesters/authenticate");
 const Login = async (request) => {
   let redis = null;
   try {
+    redis = await getRedis();
     // authenticate users password to authenticate services
     const response = await authenticateAPI(request);
 
@@ -24,7 +25,6 @@ const Login = async (request) => {
 
     const jwtStringify = JSON.stringify(jwtPayload);
 
-    redis = await getRedis();
 
     // example set with expire duration data to redis (in seconds)
     await redis.setEx(

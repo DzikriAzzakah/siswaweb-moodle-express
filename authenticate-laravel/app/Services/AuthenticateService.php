@@ -15,6 +15,8 @@ class AuthenticateService implements AuthenticateServiceInterface
       ->select(
         "mu.id",
         "mu.username",
+        "mu.firstname AS first_name",
+        "mu.lastname AS last_name",
         "mu.email",
         "mu.password",
         "mr.id AS role_id",

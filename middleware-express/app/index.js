@@ -16,6 +16,7 @@ const GlobalErrorMiddleware = require("./middlewares/global_error");
 
 const { InitConnectionDatabase } = require("./utils/db");
 const { InitConnectionDatabaseMoodle } = require("./utils/moodle_db");
+const { InitConnectionRedis } = require("./utils/redis");
 
 // Connect to database main
 InitConnectionDatabase()
@@ -28,6 +29,13 @@ InitConnectionDatabase()
 InitConnectionDatabaseMoodle()
   .then(() => {
     console.log("Database Moodle connected");
+  })
+  .catch((e) => console.error(e));
+
+// Connect to redis
+InitConnectionRedis()
+  .then(() => {
+    console.log("Redis connected");
   })
   .catch((e) => console.error(e));
 

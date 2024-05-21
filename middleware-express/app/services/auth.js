@@ -47,8 +47,6 @@ const Login = async (request) => {
   } catch (error) {
     console.error(error);
     throw error;
-  } finally {
-    await redis.disconnect();
   }
 };
 

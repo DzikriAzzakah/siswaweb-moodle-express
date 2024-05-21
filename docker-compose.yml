@@ -46,6 +46,15 @@ services:
       mariadb:
         condition: service_healthy
 
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis_data:/data
+
   # Node.js Service
   node_app:
     build:
@@ -75,6 +84,8 @@ services:
         condition: service_started
       php_app:
         condition: service_started
+      redis:
+        condition: service_started
     volumes:
       - ./middleware-express:/app
       - /app/node_modules
@@ -101,3 +112,4 @@ services:
 volumes:
   mariadb_data:
   moodle_data:
+  redis_data:

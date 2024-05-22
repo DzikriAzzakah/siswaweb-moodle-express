@@ -21,10 +21,12 @@ const Login = async (request) => {
       role_id: response.data.user?.role_id,
       role_name: response.data.user?.role_name,
       full_name: `${response.data.user?.first_name} ${response.data.user?.last_name}`,
+      parent_number: response.data.parent_number
+        ? response.data.parent_number
+        : null,
     };
 
     const jwtStringify = JSON.stringify(jwtPayload);
-
 
     // example set with expire duration data to redis (in seconds)
     await redis.setEx(
@@ -45,7 +47,6 @@ const Login = async (request) => {
 
     return accessToken;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };

@@ -32,9 +32,19 @@ class AuthenticateService implements AuthenticateServiceInterface
     }
 
     if (!password_verify($request->password,$user->password)){
-      return ["is_valid"=> false, "user"=> null];
+      return ["is_valid"=> false, "user"=> null, "parent_number"=> null];
     }
 
-    return ["is_valid"=> true, "user"=> $user];
+    // get user parent numbers
+    $parentNumber = DB::table("mdl_user_info_data AS muid")
+    ->select(
+      "muid.data AS parent_number"
+    )
+    ->join("mdl_user_info_field AS muif", "muif.id", "=", "muid.fieldid")
+    ->where("muif.shortname", "parentsNo")
+    ->where("muid.userid", $user->id)
+    ->first();
+
+    return ["is_valid"=> true, "user"=> $user, "parent_number"=> $parentNumber->parent_number];
   }
 }

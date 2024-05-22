@@ -30,6 +30,7 @@ class AuthenticateController extends Controller
             return response()->json([
                 "is_valid"=> false,
                 "user"=> null,
+                "parent_number"=> null
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

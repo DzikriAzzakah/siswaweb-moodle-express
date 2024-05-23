@@ -1,11 +1,8 @@
 const { GenerateJWT } = require("../utils/jwt");
-const { getRedis } = require("../utils/redis");
 const authenticateAPI = require("../requesters/authenticate");
 
 const Login = async (request) => {
-  let redis = null;
   try {
-    redis = await getRedis();
     // authenticate users password to authenticate services
     const response = await authenticateAPI(request);
 
@@ -25,23 +22,6 @@ const Login = async (request) => {
         ? response.data.parent_number
         : null,
     };
-
-    const jwtStringify = JSON.stringify(jwtPayload);
-
-    // example set with expire duration data to redis (in seconds)
-    await redis.setEx(
-      `SESSION_USER:${response.data.user?.username}`,
-      120,
-      jwtStringify
-    );
-
-    // example get value by key
-    const value = await redis.get(
-      `SESSION_USER:${response.data.user?.username}`
-    );
-
-    const parsedVal = JSON.parse(value);
-    console.log(parsedVal);
 
     const accessToken = GenerateJWT(jwtPayload);
 

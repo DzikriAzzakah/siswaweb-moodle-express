@@ -45,6 +45,10 @@ class AuthenticateService implements AuthenticateServiceInterface
     ->where("muid.userid", $user->id)
     ->first();
 
+    if ($parentNumber == null) {
+      return ["is_valid"=> true, "user"=> $user, "parent_number"=> null];
+    }
+
     return ["is_valid"=> true, "user"=> $user, "parent_number"=> $parentNumber->parent_number];
   }
 }

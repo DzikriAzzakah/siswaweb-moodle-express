@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"taufik45\",\r\n    \"password\":\"Reverseit@40252\"\r\n}",
+							"raw": "{\r\n    \"username\":\"dzikri\",\r\n    \"password\":\"Reverseit@40252\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -85,7 +85,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"taufik454\",\r\n    \"password\":\"Reverseit@4025\"\r\n}",
+							"raw": "{\r\n    \"username\":\"dzikri4\",\r\n    \"password\":\"Reverseit@4025\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -135,6 +135,37 @@
 								{
 									"key": "id",
 									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Phone Number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIiLCJmdWxsX25hbWUiOiJBZG1pbiBVc2VyIiwicGFyZW50X251bWJlciI6bnVsbH0sImlhdCI6MTcxNjk3NDMwMSwiZXhwIjoxNzE3MDAzMTAxfQ.wzBunwwqPSyd_Cbp5gSKIyDhmAV9tAFRhpskrGnI7H0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/phone/detail?phoneNumber=085314329936",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"phone",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "085314329936"
 								}
 							]
 						}
@@ -204,7 +235,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIifSwiaWF0IjoxNzE1NDM5NjgzLCJleHAiOjE3MTU0Njg0ODN9.D9lORK7tUNKTUzxfcqaVnSch8lq82sv3cEwsbRsScd0"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6MSwicm9sZV9uYW1lIjoibWFuYWdlciJ9LCJpYXQiOjE3MTU3Njc4MzAsImV4cCI6MTcxNTc5NjYzMH0.U9ebXj_61uLYYi7aWvxRYR4QRRo-ZYThAHRGjUXEMuI"
 							}
 						},
 						"method": "GET",
@@ -219,7 +250,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIifSwiaWF0IjoxNzE1NDM5NjgzLCJleHAiOjE3MTU0Njg0ODN9.D9lORK7tUNKTUzxfcqaVnSch8lq82sv3cEwsbRsScd0"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6MSwicm9sZV9uYW1lIjoibWFuYWdlciJ9LCJpYXQiOjE3MTU3Njc4MzAsImV4cCI6MTcxNTc5NjYzMH0.U9ebXj_61uLYYi7aWvxRYR4QRRo-ZYThAHRGjUXEMuI"
 							}
 						},
 						"method": "GET",
@@ -239,13 +270,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6MSwicm9sZV9uYW1lIjoibWFuYWdlciJ9LCJpYXQiOjE3MTU3Njc4MzAsImV4cCI6MTcxNTc5NjYzMH0.U9ebXj_61uLYYi7aWvxRYR4QRRo-ZYThAHRGjUXEMuI"
 							}
 						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/student?parentNumber=628119127010",
+							"raw": "{{URL}}/student?parentNumber=628988564424",
 							"host": [
 								"{{URL}}"
 							],
@@ -255,7 +286,7 @@
 							"query": [
 								{
 									"key": "parentNumber",
-									"value": "628119127010"
+									"value": "628988564424"
 								}
 							]
 						}
@@ -268,13 +299,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluX3N1cGVyIn0sImlhdCI6MTcxNDkzMTE2OSwiZXhwIjoxNzE0OTU5OTY5fQ.mj2r6g8-YOAkrcQ2pASoRLfhO6nNsV9YWuphtL5q45M"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6MSwicm9sZV9uYW1lIjoibWFuYWdlciJ9LCJpYXQiOjE3MTU3Njc4MzAsImV4cCI6MTcxNTc5NjYzMH0.U9ebXj_61uLYYi7aWvxRYR4QRRo-ZYThAHRGjUXEMuI"
 							}
 						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/student/scores?parentNumber=085314329936&assignmentId=1",
+							"raw": "{{URL}}/student/scores?parentNumber=628988564424&assignmentId=2",
 							"host": [
 								"{{URL}}"
 							],
@@ -285,11 +316,98 @@
 							"query": [
 								{
 									"key": "parentNumber",
-									"value": "085314329936"
+									"value": "628988564424"
 								},
 								{
 									"key": "assignmentId",
-									"value": "1"
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "role",
+			"item": [
+				{
+					"name": "Get All Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIifSwiaWF0IjoxNzE1Njc1NzMyLCJleHAiOjE3MTU3MDQ1MzJ9.cSSDxrTbTT_9PIdxPYVtH7XzKPRlUF_ZBB4sXmIv6VM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/role"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "redis",
+			"item": [
+				{
+					"name": "Set",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIiLCJmdWxsX25hbWUiOiJBZG1pbiBVc2VyIiwicGFyZW50X251bWJlciI6bnVsbH0sImlhdCI6MTcxNjk3NDMwMSwiZXhwIjoxNzE3MDAzMTAxfQ.wzBunwwqPSyd_Cbp5gSKIyDhmAV9tAFRhpskrGnI7H0"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"085314329932\",\r\n    \"ttl\":16000,\r\n    \"value\":{\r\n        \"name\":\"admins\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/redis/set"
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Key",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwicm9sZV9pZCI6Mywicm9sZV9uYW1lIjoiZWRpdGluZ3RlYWNoZXIiLCJmdWxsX25hbWUiOiJBZG1pbiBVc2VyIiwicGFyZW50X251bWJlciI6bnVsbH0sImlhdCI6MTcxNjk3NDMwMSwiZXhwIjoxNzE3MDAzMTAxfQ.wzBunwwqPSyd_Cbp5gSKIyDhmAV9tAFRhpskrGnI7H0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/redis/get/:key",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"redis",
+								"get",
+								":key"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "key",
+									"value": "085314329936"
 								}
 							]
 						}

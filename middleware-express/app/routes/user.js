@@ -1,6 +1,8 @@
 const { UserController } = require("../controllers/user");
-const { body, param } = require("express-validator");
+const { body, param, query } = require("express-validator");
 const router = require("express").Router();
+
+const { VerifyJWTMiddleware } = require("../middlewares/jwt");
 
 router.post(
   "/",
@@ -25,6 +27,12 @@ router.delete(
   "/:id",
   param("id").notEmpty().isInt(),
   UserController.DeleteUserById
+);
+router.get(
+  "/phone/detail",
+  query("phoneNumber").notEmpty().isMobilePhone(),
+  [VerifyJWTMiddleware],
+  UserController.GetUserByPhoneNumber
 );
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const { getDb } = require("../utils/db");
+const { getMoodleDb } = require("../utils/moodle_db");
 const { HashPassword } = require("../utils/crypt");
 
 const CreateUser = async (user) => {
@@ -184,6 +185,54 @@ const DeleteUserById = async (id) => {
   }
 };
 
+const GetUserByPhoneNumber = async (phoneNumber) => {
+  let db = null;
+  try {
+    let sql = `
+      SELECT DISTINCT 
+        CONCAT(mu.firstname,' ',mu.lastname) AS full_name,
+        (SELECT data FROM mdl_user_info_data muid JOIN mdl_user_info_field muif ON muif.id = muid.fieldid WHERE muif.shortname='parentsNo' AND muid.userid = mu.id) AS parents_number,
+        (SELECT data FROM mdl_user_info_data muid JOIN mdl_user_info_field muif ON muif.id = muid.fieldid WHERE muif.shortname='parentsName' AND muid.userid = mu.id) AS parents_name,
+        mu.username,
+        mu.email,
+        mr.shortname AS role_name
+      FROM 
+        mdl_role_assignments mra 
+      JOIN
+        mdl_user mu
+      ON
+        mu.id = mra.userid 
+      JOIN
+        mdl_role mr
+      ON
+        mr.id = mra.roleid
+      JOIN
+        mdl_user_info_data muid
+      ON
+        muid.userid = mu.id
+      WHERE
+        muid.data = ?
+      LIMIT 1
+    `;
+    let values = [phoneNumber];
+
+    const pool = getMoodleDb();
+    db = await pool.getConnection();
+    const [rows] = await db.execute(sql, values);
+
+    if (rows.length < 1) {
+      throw new Error("user not found");
+    }
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  } finally {
+    db.release();
+  }
+};
+
 module.exports = {
   UserService: {
     CreateUser,
@@ -191,5 +240,6 @@ module.exports = {
     GetDetailUserById,
     UpdateUserById,
     DeleteUserById,
+    GetUserByPhoneNumber,
   },
 };

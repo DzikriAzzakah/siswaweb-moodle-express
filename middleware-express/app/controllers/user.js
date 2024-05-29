@@ -108,6 +108,27 @@ const DeleteUserById = async (req, res, next) => {
   }
 };
 
+const GetUserByPhoneNumber = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { phoneNumber } = await req.query;
+
+    const results = await UserService.GetUserByPhoneNumber(phoneNumber);
+
+    res.status(200).json({
+      message: "success get users by phone numbers",
+      data: results,
+      success: true,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   UserController: {
     CreateUser,
@@ -115,5 +136,6 @@ module.exports = {
     GetDetailUserById,
     UpdateUserById,
     DeleteUserById,
+    GetUserByPhoneNumber,
   },
 };

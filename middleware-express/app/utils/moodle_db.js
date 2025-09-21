@@ -10,7 +10,6 @@ const InitConnectionDatabaseMoodle = async () => {
       user: process.env.DB_MDL_USER,
       password: process.env.DB_MDL_PASSWORD,
       database: process.env.DB_MDL_NAME,
-      waitingForConnection: true,
       connectionLimit: 10,
       queueLimit: 0,
     });
